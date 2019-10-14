@@ -1,9 +1,15 @@
 'use strict';
+var parentEl = document.getElementById('parentElement');
+
+var child = document.createElement('h1');
+child.textContent = 'Data: ';
+parentEl.appendChild(child);
 
 var leftImageEl = document.getElementById('left');
 var rightImageEl = document.getElementById('right');
 var centerImageEl = document.getElementById('center');
 var containerEl = document.getElementById('image_container');
+var votesTotal = 0;
 
 // leftImageEl.src = 'images/bag.jpg';
 // leftImageEl.name='bag.jpg';
@@ -32,9 +38,21 @@ new Product('banana');
 new Product('bathroom');
 new Product('boots');
 new Product('breakfast');
+new Product('bubblegum');
 new Product('chair');
 new Product('cthulhu');
 new Product('dog-duck');
+new Product('dragon');
+new Product('pen');
+new Product('pet-sweep');
+new Product('scissors');
+new Product('shark');
+new Product('sweep');
+new Product('tauntaun');
+new Product('unicorn');
+new Product('usb');
+new Product('water-can');
+new Product('wine-glass');
 
 function renderProducts() {
   var uniquePicsArray = [];
@@ -43,30 +61,40 @@ function renderProducts() {
   uniquePicsArray[2] = makeRandom();
 
   while (uniquePicsArray[0] === uniquePicsArray[1]){
+    uniquePicsArray[0] = makeRandom();
+  }
+  while (uniquePicsArray[0] === uniquePicsArray[2]){
+    uniquePicsArray[2] = makeRandom();
+  }
+  while (uniquePicsArray[1] === uniquePicsArray[2]){
     uniquePicsArray[1] = makeRandom();
   }
 
-  allProducts[uniquePicsArray[0].views++];
 
   //display a product whose index is the random number
   leftImageEl.src = allProducts[uniquePicsArray[0]].path;
   leftImageEl.name = allProducts[uniquePicsArray[0]].name;
   leftImageEl.title = allProducts[uniquePicsArray[0]].name;
 
+  allProducts[uniquePicsArray[0]].views++;
 
   rightImageEl.src = allProducts[uniquePicsArray[1]].path;
   rightImageEl.name = allProducts[uniquePicsArray[1]].name;
   rightImageEl.title = allProducts[uniquePicsArray[1]].name;
 
+  allProducts[uniquePicsArray[1]].views++;
 
   centerImageEl.src = allProducts[uniquePicsArray[2]].path;
   centerImageEl.name = allProducts[uniquePicsArray[2]].name;
   centerImageEl.title = allProducts[uniquePicsArray[2]].name;
+
+  allProducts[uniquePicsArray[2]].views++;
+  console.log(allProducts);
 }
 
-renderProducts();
 
 function handleClick() {
+  votesTotal++;
   var chosenImage = event.target.title;
   console.log(chosenImage);
   for (var i = 0; i < allProducts.length; i++) {
@@ -74,7 +102,28 @@ function handleClick() {
       allProducts[i].votes++;
     }
   }
+  if(votesTotal === 5) {
+    containerEl.innerHTML = '';
+  }
   renderProducts();
 }
 
+
 containerEl.addEventListener('click', handleClick);
+
+renderProducts();
+
+console.log(allProducts);
+
+function render() {
+  for( var i = 0; i < allProducts.length; i++ ) {
+    var childEl = document.createElement('li');
+    childEl.textContent = `Picture: ${allProducts[i].name}     Times Shown: ${allProducts[i].views}     Times voted: ${allProducts[i].votes}`;
+    parentEl.appendChild(childEl);
+  }
+}
+console.log(this.views);
+console.log(this.votes);
+
+render();
+
