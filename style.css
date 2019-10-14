@@ -1,0 +1,15 @@
+#right {
+    border: 1px solid blue;
+    display: inline-block;
+    width: 33%;
+}
+#center {
+    border: 1px solid blue;
+    display: inline-block;
+    width: 33%;
+}
+#left {
+    border: 1px solid blue;
+    display: inline-block;
+    width: 33%;
+}
