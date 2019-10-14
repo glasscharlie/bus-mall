@@ -1,9 +1,9 @@
 'use strict';
-var parentEl = document.getElementById('parentElement');
+// var parentEl = document.getElementById('parentElement');
 
-var child = document.createElement('h1');
-child.textContent = 'Data: ';
-parentEl.appendChild(child);
+// var child = document.createElement('h1');
+// child.textContent = 'Data: ';
+// parentEl.appendChild(child);
 
 var leftImageEl = document.getElementById('left');
 var rightImageEl = document.getElementById('right');
@@ -93,7 +93,8 @@ function renderProducts() {
 }
 
 
-function handleClick() {
+function handleClick(event) {
+  // event.preventDefault();
   votesTotal++;
   var chosenImage = event.target.title;
   console.log(chosenImage);
@@ -106,6 +107,8 @@ function handleClick() {
     containerEl.innerHTML = '';
   }
   renderProducts();
+  parentEl.innerHTML = '';
+  render();
 }
 
 
@@ -115,6 +118,12 @@ renderProducts();
 
 console.log(allProducts);
 
+var parentEl = document.getElementById('parentElement');
+
+var child = document.createElement('h1');
+child.textContent = 'Data: ';
+parentEl.appendChild(child);
+
 function render() {
   for( var i = 0; i < allProducts.length; i++ ) {
     var childEl = document.createElement('li');
@@ -122,8 +131,6 @@ function render() {
     parentEl.appendChild(childEl);
   }
 }
-console.log(this.views);
-console.log(this.votes);
 
 render();
 
