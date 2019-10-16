@@ -111,7 +111,6 @@ renderProducts();
 
 function getStorageData() {
   if(localStorage.Data) {
-    while (Product.all.length) { Product.all.pop(); }
     Product.all = JSON.parse(localStorage.Data);
 
   }
@@ -175,6 +174,5 @@ function chartCreator(){
     }
   });
 }
-
 
 
