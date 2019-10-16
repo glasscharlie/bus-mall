@@ -74,7 +74,7 @@ function renderProducts() {
 
 
 var handleClick = function(event) {
-
+  localStorage.Data = JSON.stringify(Product.all);
   votesTotal++;
   // console.log('votesTotal: ' + votesTotal);
   var chosenImage = event.target.id;
@@ -97,7 +97,7 @@ var handleClick = function(event) {
     Product.container.remove();
     chartCreator();
   }
-  localStorage.Data = JSON.stringify(Product.all);
+  
   renderProducts();
 
 };
