@@ -1,5 +1,6 @@
 'use strict';
-var testNumber = 25
+
+var testNumber = 5;
 Product.pics = [
   document.getElementById('left'),
   document.getElementById('right'),
@@ -74,7 +75,6 @@ function renderProducts() {
 
 var handleClick = function(event) {
 
-
   votesTotal++;
   // console.log('votesTotal: ' + votesTotal);
   var chosenImage = event.target.id;
@@ -89,25 +89,35 @@ var handleClick = function(event) {
       Product.all[i].votes++;
 
     }
-    
+
 
   }
   if (votesTotal === testNumber) {
     removeEventListener('click', handleClick);
     Product.container.remove();
     chartCreator();
-    // myChart.update();
   }
+  localStorage.Data = JSON.stringify(Product.all);
   renderProducts();
 
 };
 
 
-
-//Event Listeners
 Product.container.addEventListener('click', handleClick);
 
+getStorageData();
+
 renderProducts();
+
+function getStorageData() {
+  if(localStorage.Data) {
+    while (Product.all.length) { Product.all.pop(); }
+    Product.all = JSON.parse(localStorage.Data);
+
+  }
+
+}
+
 
 
 Product.namesData = [];
@@ -118,14 +128,13 @@ var chartData = function() {
   for (var i = 0; i < Product.all.length; i++) {
     Product.namesData.push(Product.all[i].name);
     Product.votesData.push(Product.all[i].votes);
-    console.log('total votes: ' + Product.all[i].votes);
-    console.log('votesdata: ' + Product.votesData);
+    // console.log('total votes: ' + Product.all[i].votes);
+    // console.log('votesdata: ' + Product.votesData);
   }
 
 };
-// chartData();
 
-{/* <script> */}
+
 function chartCreator(){
   chartData();
   var ctx = document.getElementById('myChart').getContext('2d');
@@ -165,9 +174,7 @@ function chartCreator(){
       }
     }
   });
-// </script>
 }
-
 
 
 
