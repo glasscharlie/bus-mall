@@ -1,6 +1,6 @@
 'use strict';
 
-var testNumber = 5;
+var testNumber = 25;
 Product.pics = [
   document.getElementById('left'),
   document.getElementById('right'),
@@ -97,7 +97,7 @@ var handleClick = function(event) {
     Product.container.remove();
     chartCreator();
   }
-  
+
   renderProducts();
 
 };
@@ -112,9 +112,7 @@ renderProducts();
 function getStorageData() {
   if(localStorage.Data) {
     Product.all = JSON.parse(localStorage.Data);
-
   }
-
 }
 
 
