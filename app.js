@@ -115,7 +115,10 @@ function getStorageData() {
     Product.all = JSON.parse(localStorage.Data);
 
   }
- 
+
+}
+
+
 
 Product.namesData = [];
 Product.votesData = [];
