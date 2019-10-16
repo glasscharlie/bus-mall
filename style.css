@@ -1,21 +1,140 @@
 #right {
-    border: 1px solid blue;
+    border: 2px solid blue;
     display: inline-block;
-    width: 33%;
+    width: 10vw;
+    height: auto;
 }
 #center {
-    border: 1px solid blue;
+    border: 2px solid blue;
     display: inline-block;
-    width: 33%;
+    width: 10vw;
 }
 #left {
-    border: 1px solid blue;
+    border: 2px solid blue;
     display: inline-block;
-    width: 33%;
+    width: 10vw;
 }
 
 #myChart
 {
-    width: 333px;
-    height: 333px;
+    width: 50vw;
+    height: 60vw;
 }
+
+h1 {
+    color:red;
+}
+
+#image_container {
+    width: 100vw;
+    height: auto;
+    border: 2px blue
+}
+#bag {
+    border: 3px blue;
+    display: inline-block;
+    width: 30vw;
+
+}
+#banana {
+    display: inline-block;
+    width: 30vw;
+
+}
+#bathroom {
+    display: inline-block;
+    width: 30vw;
+
+}
+#boots {
+    display: inline-block;
+    width: 30vw;
+
+}
+#breakfast {
+    display: inline-block;
+    width: 30vw;
+
+}
+#bubblegum {
+    display: inline-block;
+    width: 30vw;
+
+}
+#chair {
+    display: inline-block;
+    width: 30vw;
+
+}
+#cthulhu {
+    display: inline-block;
+    width: 30vw;
+
+}
+#dog-duck {
+    display: inline-block;
+    width: 30vw;
+
+}
+#dragon {
+    display: inline-block;
+    width: 30vw;
+
+}
+#pen {
+    display: inline-block;
+    width: 30vw;
+
+}
+#pet-sweep {
+    display: inline-block;
+    width: 30vw;
+
+}
+scissors {
+    display: inline-block;
+    width: 30vw;
+
+}
+#shark {
+    display: inline-block;
+    width: 30vw;
+
+}
+#sweep {
+    display: inline-block;
+    width: 30vw;
+
+}
+#tauntaun {
+    display: inline-block;
+    width: 30vw;
+
+}
+#unicorn {
+    display: inline-block;
+    width: 30vw;
+
+}
+#usb {
+    display: inline-block;
+    width: 30vw;
+
+}
+#water-can {
+    display: inline-block;
+    width: 30vw;
+
+}
+#wine-glass {
+    display: inline-block;
+    width: 30vw;
+
+}
+
+canvas{
+
+    width: 80vw !important;
+    height:60vw !important;
+  
+  }
