@@ -1,36 +1,27 @@
 'use strict';
-// var parentEl = document.getElementById('parentElement');
+var testNumber = 25
+Product.pics = [
+  document.getElementById('left'),
+  document.getElementById('right'),
+  document.getElementById('center')
+];
+Product.container = document.getElementById('image_container');
 
-// var child = document.createElement('h1');
-// child.textContent = 'Data: ';
-// parentEl.appendChild(child);
-
-var leftImageEl = document.getElementById('left');
-var rightImageEl = document.getElementById('right');
-var centerImageEl = document.getElementById('center');
-var containerEl = document.getElementById('image_container');
+Product.all = [];
+Product.uniqueArray = [];
 var votesTotal = 0;
-
-// leftImageEl.src = 'images/bag.jpg';
-// leftImageEl.name='bag.jpg';
-// leftImageEl.title='bag.jpg';
-
-// rightImageEl.src = 'images/boots.jpg';
-// rightImageEl.name='boots.jpg';
-// rightImageEl.title='boots.jpg';
-
-var allProducts = [];
 
 function Product(name) {
   this.views = 0;
   this.votes = 0;
   this.name = name;
+  this.title=name;
   this.path = `images/${name}.jpg`;
-  allProducts.push(this);
+  Product.all.push(this);
 }
 
 function makeRandom() {
-  return Math.floor(Math.random() * allProducts.length);
+  return Math.floor(Math.random() * Product.all.length);
 }
 
 new Product('bag');
@@ -54,83 +45,129 @@ new Product('usb');
 new Product('water-can');
 new Product('wine-glass');
 
-function renderProducts() {
-  var uniquePicsArray = [];
-  uniquePicsArray[0] = makeRandom();
-  uniquePicsArray[1] = makeRandom();
-  uniquePicsArray[2] = makeRandom();
-
-  while (uniquePicsArray[0] === uniquePicsArray[1]){
-    uniquePicsArray[0] = makeRandom();
-  }
-  while (uniquePicsArray[0] === uniquePicsArray[2]){
-    uniquePicsArray[2] = makeRandom();
-  }
-  while (uniquePicsArray[1] === uniquePicsArray[2]){
-    uniquePicsArray[1] = makeRandom();
-  }
-
-
-  //display a product whose index is the random number
-  leftImageEl.src = allProducts[uniquePicsArray[0]].path;
-  leftImageEl.name = allProducts[uniquePicsArray[0]].name;
-  leftImageEl.title = allProducts[uniquePicsArray[0]].name;
-
-  allProducts[uniquePicsArray[0]].views++;
-
-  rightImageEl.src = allProducts[uniquePicsArray[1]].path;
-  rightImageEl.name = allProducts[uniquePicsArray[1]].name;
-  rightImageEl.title = allProducts[uniquePicsArray[1]].name;
-
-  allProducts[uniquePicsArray[1]].views++;
-
-  centerImageEl.src = allProducts[uniquePicsArray[2]].path;
-  centerImageEl.name = allProducts[uniquePicsArray[2]].name;
-  centerImageEl.title = allProducts[uniquePicsArray[2]].name;
-
-  allProducts[uniquePicsArray[2]].views++;
-  console.log(allProducts);
-}
-
-
-function handleClick(event) {
-  // event.preventDefault();
-  votesTotal++;
-  var chosenImage = event.target.title;
-  console.log(chosenImage);
-  for (var i = 0; i < allProducts.length; i++) {
-    if (allProducts[i].name === chosenImage) {
-      allProducts[i].votes++;
+function uniqueArrayGenerator() {
+  while (Product.uniqueArray.length < 6){
+    var random = makeRandom();
+    // console.log(random);
+    while(!Product.uniqueArray.includes(random)) {
+      // console.log('building uniqueArray:  ', Product.uniqueArray);
+      Product.uniqueArray.push(random);
     }
   }
-  if(votesTotal === 5) {
-    containerEl.innerHTML = '';
+  // console.log('uniqueArray completed!!: ', Product.uniqueArray);
+}
+
+function renderProducts() {
+  // console.log('How many times do I run?');
+  uniqueArrayGenerator();
+  for (var i = 0; i < Product.uniqueArray.length; i++){
+    var temp = Product.uniqueArray.shift();
+    // console.log('The Temp is #: ', temp);
+    Product.pics[i].src = Product.all[temp].path;
+    Product.pics[i].id=Product.all[temp].name;
+    Product.all[temp].views++;
   }
-  renderProducts();
-  parentEl.innerHTML = '';
-  render();
 }
 
 
-containerEl.addEventListener('click', handleClick);
+
+
+var handleClick = function(event) {
+
+
+  votesTotal++;
+  // console.log('votesTotal: ' + votesTotal);
+  var chosenImage = event.target.id;
+
+  // console.log('chosenImage: '+ event.target.id);
+
+  for (var i = 0; i < Product.all.length; i++) {
+    // console.log('productVotes: '+ Product.all[i].votes);
+    // console.log('productName: '+ Product.all[i].name);
+
+    if (Product.all[i].name === chosenImage) {
+      Product.all[i].votes++;
+
+    }
+    
+
+  }
+  if (votesTotal === testNumber) {
+    removeEventListener('click', handleClick);
+    Product.container.remove();
+    chartCreator();
+    // myChart.update();
+  }
+  renderProducts();
+
+};
+
+
+
+//Event Listeners
+Product.container.addEventListener('click', handleClick);
 
 renderProducts();
 
-console.log(allProducts);
 
-var parentEl = document.getElementById('parentElement');
+Product.namesData = [];
+Product.votesData = [];
+Product.viewsData = [];
 
-var child = document.createElement('h1');
-child.textContent = 'Data: ';
-parentEl.appendChild(child);
-
-function render() {
-  for( var i = 0; i < allProducts.length; i++ ) {
-    var childEl = document.createElement('li');
-    childEl.textContent = `Picture: ${allProducts[i].name}     Times Shown: ${allProducts[i].views}     Times voted: ${allProducts[i].votes}`;
-    parentEl.appendChild(childEl);
+var chartData = function() {
+  for (var i = 0; i < Product.all.length; i++) {
+    Product.namesData.push(Product.all[i].name);
+    Product.votesData.push(Product.all[i].votes);
+    console.log('total votes: ' + Product.all[i].votes);
+    console.log('votesdata: ' + Product.votesData);
   }
+
+};
+// chartData();
+
+{/* <script> */}
+function chartCreator(){
+  chartData();
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Product.namesData,
+      datasets: [{
+        label: '# of Votes',
+        data: Product.votesData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+// </script>
 }
 
-render();
+
+
 

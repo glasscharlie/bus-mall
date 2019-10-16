@@ -13,3 +13,9 @@
     display: inline-block;
     width: 33%;
 }
+
+#myChart
+{
+    width: 333px;
+    height: 333px;
+}
