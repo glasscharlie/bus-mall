@@ -113,20 +113,9 @@ function getStorageData() {
   if(localStorage.Data) {
     while (Product.all.length) { Product.all.pop(); }
     Product.all = JSON.parse(localStorage.Data);
-    // for(var i = 0; i < Product.all.length; i++)
-    //   new Product(parsedData[i].name, parsedData[i].votes, parsedData[i].views);
+
   }
-  // else {
-  //   for(var z = 0; z < Product.name.length; z++) {
-  //     new Product(Product.all[z].name);
-  //   }
-  // }
-}
-
-// var removeLocalStorage = function() {
-//   localStorage.removeItem('Data');
-// };
-
+ 
 
 Product.namesData = [];
 Product.votesData = [];
