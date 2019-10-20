@@ -19,6 +19,8 @@
 {
     width: 50vw;
     height: 60vw;
+    margin-left: 7vw;
+    margin-top: 3vw;
 }
 
 h1 {
@@ -28,7 +30,8 @@ h1 {
 #image_container {
     width: 100vw;
     height: auto;
-    border: 2px blue
+    border: 2px blue;
+    margin-top: 5vw;
 }
 #bag {
     border: 3px blue;
@@ -138,3 +141,18 @@ canvas{
     height:60vw !important;
   
   }
+
+  h1 {
+    font-size: 80px;
+    margin-left: 40vw;
+}
+
+body {
+    background-color: yellowgreen;
+}
+
+p {
+    color: brown;
+    margin-top: 3vw;
+    margin-left: 3vw;
+}

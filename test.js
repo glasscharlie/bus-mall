@@ -1,33 +1,35 @@
-'use strict';
+// this file includes demo code from class and should be ifnore
 
-//store dogs in terrels bassement
-var terrelsBasement = [];
+// 'use strict';
 
-//build a dog constructor function
-function Dog(name, age){
-  this.name = name;
-  this.age = age;
-  terrelsBasement.push(this);
-}
+// //store dogs in terrels bassement
+// var terrelsBasement = [];
 
-//instantiate dogs
-new Dog ('fluffy', 13);
-new Dog ('spike', 4);
-new Dog ('tippy', 3);
-new Dog ('peeve', 12);
-new Dog ('fundito', 10);
-new Dog ('mangosteen', 83);
-new Dog ('larry', 33);
+// //build a dog constructor function
+// function Dog(name, age){
+//   this.name = name;
+//   this.age = age;
+//   terrelsBasement.push(this);
+// }
 
-//stringify data
-var terrelsBasementStringified = JSON.stringify(terrelsBasement);
+// //instantiate dogs
+// new Dog ('fluffy', 13);
+// new Dog ('spike', 4);
+// new Dog ('tippy', 3);
+// new Dog ('peeve', 12);
+// new Dog ('fundito', 10);
+// new Dog ('mangosteen', 83);
+// new Dog ('larry', 33);
 
-localStorage.setItem('data' + terrelsBasementStringified);
+// //stringify data
+// var terrelsBasementStringified = JSON.stringify(terrelsBasement);
 
-var storageTerrelsBasement = localStorage.getitem('data');
+// localStorage.setItem('data' + terrelsBasementStringified);
 
-var parsedTerrelsbasement = JSON.parsed(storageTerrelsBasement);
+// var storageTerrelsBasement = localStorage.getitem('data');
 
-for (var i = 0; i < parsedTerrelsbasement; i++) {
-  new Dog(parsedTerrelsbasement[i].name, parsedTerrelsbasement[i].age);
-}
+// var parsedTerrelsbasement = JSON.parsed(storageTerrelsBasement);
+
+// for (var i = 0; i < parsedTerrelsbasement; i++) {
+//   new Dog(parsedTerrelsbasement[i].name, parsedTerrelsbasement[i].age);
+// }
